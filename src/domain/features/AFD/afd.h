@@ -37,3 +37,49 @@ typedef struct afd_est
     int *qtd_transitions;
     
 } AFD;
+
+/**
+Metodo que retorna uma instancia de transicao, passando a AFD alvo,
+e os campos necessários na estrutura de transicao.
+**/
+Transition *getTransition(AFD afd, char *from, char *to, char *read);
+
+/**
+  Metodo para alocacao de memoria e retorna uma transicao vazia.
+ **/
+ Transition *getEmptyTransition();
+
+ /**
+  Metodo que busca e retorna a posicao de um estado dentro da AFD,
+  é necessario saber a AFD utilizada e o estado a ser encontrado.
+  Se o estado não for encontrado, o valor -1 é retornado. 
+  **/
+  int getStatePosition(AFD afd, char *state);
+
+ /**
+  Metodo que busca e retorna a posicao de um simbolo dentro da AFD,
+  é necessario saber a AFD utilizada e o simbolo a ser encontrado.
+  Se o simbolo não for encontrado, o valor -1 é retornado. 
+  **/
+  int getSymbolPosition(AFD afd, char *symbol);
+
+  /**
+  Método que retorna uma AFD vazia.
+   **/
+  AFD *getEmptyAFD();
+
+  /**
+  Método que faz a leitura de uma AFD a partir de um arquivo informado.
+  E retorna a AFD correspondente.
+   **/
+  AFD *readAFD(char *fileName);
+
+  /**
+  Método que escreve a AFD informada no arquivo informado.
+   **/
+  void writeAFD(AFD afd, char *fileName);
+
+  /**
+  Método que libera memoria alocada por uma AFD.
+   **/
+  void freeAFD(AFD *afd);
