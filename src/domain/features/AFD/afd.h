@@ -1,12 +1,15 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 typedef struct _AFD
 {
     int qtdEstados;
-    char estados[qtdEstados][10];
+    char *estados;
     int qtdAlfabeto;
-    char alfabeto[qtdAlfabeto];
+    char *alfabeto;
     int qtdTransicao;
-    char transicao[qtdTransicao][30];
-    char estInicial[10];
+    char *transicao;
+    char *estInicial;
     int qtdEstFinal;
-    char estFinal[qtdEstFinal][10];
-} AFD;
+    char *estFinal;
+}AFD;
