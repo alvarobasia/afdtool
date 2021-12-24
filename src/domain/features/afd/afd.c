@@ -44,7 +44,7 @@ int getSymbolPosition(AFD afd, char *symbol)
 {
     for (int i = 0; i < *afd.qtd_symbols; i++)
     {
-        if (!strcmp(afd.alphabet[i], symbol))
+        if (!strcmp(afd.symbols[i], symbol))
         {
             return i;
         }
@@ -77,7 +77,7 @@ void freeAFD(AFD *afd)
     }
     for (int i = 0; i < *afd->qtd_symbols; i++)
     {
-        free(afd->alphabet[i]);
+        free(afd->symbols[i]);
     }
     for (int i = 0; i < *afd->qtd_transitions; i++)
     {
@@ -85,7 +85,7 @@ void freeAFD(AFD *afd)
     }
 
     free(afd->transitions);
-    free(afd->alphabet);
+    free(afd->symbols);
     free(afd->states);
     free(afd->final_states);
     free(afd->qtd_states);
