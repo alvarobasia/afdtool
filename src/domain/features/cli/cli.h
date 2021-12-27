@@ -32,7 +32,9 @@ typedef struct _CLI
 
 CLI *createCLI(int argc, char *argv[]);
 
-Operations *getOperation(char *comand);
+Operations getOperation(char *comand);
+
+Operations getOperationByText(char *comand);
 
 CLIErrors *isValidImputs(int argc, char *argv[]);
 
