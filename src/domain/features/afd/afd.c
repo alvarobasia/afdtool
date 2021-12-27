@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
+
 #include "./afd.h"
 
 Transition *getTransition(AFD afd, char *from, char *to, char *read)

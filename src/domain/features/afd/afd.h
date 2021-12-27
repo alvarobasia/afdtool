@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 /** 
 Estrutura para representação de uma transicao. Ela utiliza os indices dos elementos no array do AFD.
 -> from: estado em que se encontra o AFD no momento da transicao
@@ -6,9 +9,9 @@ Estrutura para representação de uma transicao. Ela utiliza os indices dos elem
 **/
 typedef struct transition_est
 {
-  int *from;
-  int *read;
-  int *to;
+  char *from;
+  char *read;
+  char *to;
 } Transition;
 
 /**
@@ -28,15 +31,15 @@ typedef struct afd_est
   char **symbols;
   int *qtd_symbols;
 
-  int *initial_state;
+  char *initial_state;
 
   char *final_states;
-  int *qtd_final_states;
+  int qtd_final_states;
 
-  Transition **transitions;
-  int *qtd_transitions;
+  Transition *transitions;
+  int qtd_transitions;
 
-} AFD;
+}AFD;
 
 /**
 Metodo que retorna uma instancia de transicao, passando a AFD alvo,

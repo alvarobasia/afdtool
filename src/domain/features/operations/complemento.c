@@ -1,13 +1,16 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "../afd/afd.c"
 
 AFD *complementacao(AFD *entrada){
 
     AFD *ent = entrada;
-    AFD *comp = *ent;
+    AFD *comp = ent;
 
     //limpando os estados finais
     comp->final_states = NULL;
+    comp->qtd_final_states = 0;
     int cont = 0, position = 0;
 
     // verificando quais estados não são finais no AFD de entrada e adicionando-os como
@@ -21,6 +24,7 @@ AFD *complementacao(AFD *entrada){
         }
         if(cont == ent->qtd_final_states){
             comp->final_states[position] = ent->states[i];
+            comp->qtd_final_states++;
             position++;
         }
         cont=0;
