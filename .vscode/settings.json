@@ -5,5 +5,20 @@
     "string.h": "c",
     "utils-cli.h": "c"
   },
-  "C_Cpp.errorSquiggles": "Disabled"
+  "C_Cpp.errorSquiggles": "Disabled",
+  "C_Cpp_Runner.cCompilerPath": "C:/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/gcc.exe",
+  "C_Cpp_Runner.debuggerPath": "C:/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/gdb.exe",
+  "C_Cpp_Runner.warnings": [],
+  "C_Cpp_Runner.compilerArgs": [],
+  "C_Cpp_Runner.includePaths": [
+    "${default}",
+    "${workspaceFolder}/src/domain/features",
+    "${workspaceFolder}/src/domain/features/cli"
+  ],
+  "C_Cpp_Runner.linkerArgs": [],
+  "C_Cpp_Runner.cStandard": "c11",
+  "C_Cpp_Runner.cppStandard": "c++14",
+  "C_Cpp_Runner.excludeSearch": [],
+  "C_Cpp_Runner.enableWarnings": true,
+  "C_Cpp_Runner.warningsAsError": false
 }

@@ -51,20 +51,28 @@ AFD *afdProduct(AFD *afd1, AFD *afd2)
 {
     // criar AFD vazia
     AFD *product = getEmptyAFD();
-    // quantidade de estados
+    // quantidade de estados (m * n)
     int qtdStates = (*afd1->qtd_states) * (*afd2->qtd_states);
     *product->qtd_states = qtdStates;
-    // alocação de memoria para os estados
+    // alocação de memoria para os estados da AFD produto
     product->states = malloc(sizeof(char *) * qtdStates);
 
     // simbolos utilizados
-    *product->qtd_symbols = *afd1->qtd_symbols;
-    product->symbols = malloc((*afd1->qtd_symbols) * sizeof(char *));
+    *product->qtd_symbols = *afd2->qtd_symbols;
+    // product->symbols = malloc((*afd2->qtd_symbols) * sizeof(char *));
+    product->symbols = malloc((*product->qtd_symbols) * sizeof(char *));
+
     // adicionar os simbolos que foram utilizados nas AFDs na AFD do produto
-    for (int i = 0; i < *afd1->qtd_symbols; i++)
+    for (int i = 0; i < *afd2->qtd_symbols; i++)
     {
-        char *aux = afd1->symbols[i];
-        char *symbol = copyString(aux);
+        char *aux = afd2->symbols[i];
+        // char *symbol = copyString(aux);
+        char *symbol = malloc(strlen(aux) * sizeof(char));
+
+        for (int j = 0; j < strlen(aux); j++)
+        {
+            symbol[i] = aux[i];
+        }
 
         product->symbols[i] = symbol;
     }
@@ -77,13 +85,13 @@ AFD *afdProduct(AFD *afd1, AFD *afd2)
         for (int j = 0; j < *afd2->qtd_states; j++)
         {
             // estado da AFD 2
-            char *state2 = afd2->states[i];
+            char *state2 = afd2->states[j];
             // int size = strlen(state1) + strlen(state2);
             // concatenação entre 2 estados
             char *aux = strcat(state1, "-");
             char *stateProduct = strcat(aux, state2);
             product->states[index] = stateProduct;
-            // indicar o estado inicial da AFD de produto,
+            // indicar o estado inicial da AFD de produto, no caso, os dois estados devem ser iniciais em suas AFDs de origem
             if (i == *afd1->initial_state && j == *afd2->initial_state)
             {
                 *product->initial_state = index;
@@ -94,6 +102,16 @@ AFD *afdProduct(AFD *afd1, AFD *afd2)
     // realizar transição dos estados
     *product->qtd_transitions = qtdStates * (*product->qtd_symbols);
     product->transitions = malloc(sizeof(Transition *) * (product->qtd_transitions));
+
+    for (int i = 0; i < product->qtd_states; i++)
+    {
+
+        for (int j = 0; j < product->qtd_symbols; j++)
+        {
+            /* code */
+        }
+    }
+
     index = 0;
     // ler os simbolos de cada estado do AFD produto
     for (int i = 0; i < *product->qtd_states; i++)
