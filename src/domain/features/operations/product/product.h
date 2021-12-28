@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../../../features/afd/afd.h"
 
 /**
  Método utilizado para gerar um produto de AFDs.
