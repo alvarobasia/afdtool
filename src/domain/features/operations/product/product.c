@@ -59,21 +59,15 @@ AFD *afdProduct(AFD *afd1, AFD *afd2)
 
     // simbolos utilizados
     product->qtd_symbols = afd2->qtd_symbols;
-    // product->symbols = malloc((*afd2->qtd_symbols) * sizeof(char *));
     product->symbols = malloc((product->qtd_symbols) * sizeof(char *));
 
     // adicionar os simbolos que foram utilizados nas AFDs na AFD do produto
     for (int i = 0; i < afd2->qtd_symbols; i++)
     {
         char *aux = afd2->symbols[i];
-        // char *symbol = copyString(aux);
-        char *symbol = malloc(strlen(aux) * sizeof(char));
         int size = strlen(aux);
-        for (int j = 0; j < size; j++)
-        {
-            symbol[i] = aux[i];
-        }
-
+        char *symbol = malloc((size + 1) * sizeof(char));
+        strcpy(symbol, aux);
         product->symbols[i] = symbol;
     }
     // criar estados possíveis realizando o produto entre duas AFDs
@@ -86,10 +80,13 @@ AFD *afdProduct(AFD *afd1, AFD *afd2)
         {
             // estado da AFD 2
             char *state2 = afd2->states[j];
-            // int size = strlen(state1) + strlen(state2);
+
             // concatenação entre 2 estados
-            char *aux = strcat(state1, "-");
-            char *stateProduct = strcat(aux, state2);
+            int size = strlen(state1);
+            char *stateProduct = malloc((size + 1) * sizeof(char));
+            strcpy(stateProduct, state1);
+            strcat(stateProduct, "/");
+            strcat(stateProduct, state2);
             product->states[index] = stateProduct;
             // indicar o estado inicial da AFD de produto, no caso, os dois estados devem ser iniciais em suas AFDs de origem
             if (i == *afd1->initial_state && j == *afd2->initial_state)
@@ -99,6 +96,13 @@ AFD *afdProduct(AFD *afd1, AFD *afd2)
             index++;
         }
     }
+
+    printf("\n\n\n--------estados:");
+    for (int i = 0; i < product->qtd_states; i++)
+    {
+        printf("\n%s", product->states[i]);
+    }
+
     // realizar transição dos estados
     product->qtd_transitions = qtdStates * (product->qtd_symbols);
     product->transitions = malloc(sizeof(Transition *) * (product->qtd_transitions));
