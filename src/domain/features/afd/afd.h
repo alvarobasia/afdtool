@@ -1,6 +1,10 @@
+#ifndef __AFD_H__
+#define __AFD_H__
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
 /** 
 Estrutura para representação de uma transicao. Ela utiliza os indices dos elementos no array do AFD.
 -> from: estado em que se encontra o AFD no momento da transicao
@@ -29,17 +33,17 @@ typedef struct afd_est
   int qtd_states;
 
   char **symbols;
-  int *qtd_symbols;
+  int qtd_symbols;
 
   char *initial_state;
 
-  char *final_states;
+  char **final_states;
   int qtd_final_states;
 
   Transition *transitions;
   int qtd_transitions;
 
-}AFD;
+} AFD;
 
 /**
 Metodo que retorna uma instancia de transicao, passando a AFD alvo,
@@ -57,18 +61,19 @@ Transition *getEmptyTransition();
   é necessario saber a AFD utilizada e o estado a ser encontrado.
   Se o estado não for encontrado, o valor -1 é retornado. 
   **/
-int getStatePosition(AFD afd, char *state);
+int getStatePosition(AFD *afd, char *state);
 
 /**
   Metodo que busca e retorna a posicao de um simbolo dentro da AFD,
   é necessario saber a AFD utilizada e o simbolo a ser encontrado.
   Se o simbolo não for encontrado, o valor -1 é retornado. 
   **/
-int getSymbolPosition(AFD afd, char *symbol);
+int getSymbolPosition(AFD *afd, char *symbol);
 
 /**
   Método que retorna uma AFD vazia.
    **/
+
 AFD *getEmptyAFD();
 
 /**
@@ -86,3 +91,5 @@ void writeAFD(AFD afd, char *fileName);
   Método que libera memoria alocada por uma AFD.
    **/
 void freeAFD(AFD *afd);
+
+#endif

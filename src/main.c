@@ -1,9 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "./domain/features/cli/cli.h"
-#include "./domain/features/afd/afd.c"
-#include "./domain/features/operations/complemento.c"
-
+#include "./domain/features/afd/afd.h"
+#include "./domain/features/operations/complement.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,53 +14,58 @@ int main(int argc, char *argv[])
     //     return EXIT_FAILURE;
     // }
 
-    AFD *afd;
+    AFD *afd = getEmptyAFD();
 
-    //estados
+    // //estados
     afd->qtd_states = 2;
+    printf("%d", afd->qtd_states);
+    afd->states = malloc(sizeof(char) * afd->qtd_states);
     afd->states[0] = "par";
     afd->states[1] = "impar";
+    printf("%s", afd->states[1]);
+    // // //alfabeto
+    // afd->qtd_symbols = 2;
+    // afd->symbols[0] = "0";
+    // afd->symbols[1] = "1";
 
-    //alfabeto
-    afd->qtd_symbols = 2;
-    afd->symbols[0] = "0";
-    afd->symbols[1] = "1";
+    // // //transições
+    // afd->transitions[0].from = "par";
+    // afd->transitions[0].read = "0";
+    // afd->transitions[0].to = "impar";
 
-    //transições
-    afd->transitions[0]->from = "par";
-    afd->transitions[0]->read = "0";
-    afd->transitions[0]->to = "impar";
+    // afd->transitions[1].from = "par";
+    // afd->transitions[1].read = "1";
+    // afd->transitions[1].to = "impar";
 
-    afd->transitions[0]->from = "par";
-    afd->transitions[0]->read = "1";
-    afd->transitions[0]->to = "impar";
+    // afd->transitions[2].from = "impar";
+    // afd->transitions[2].read = "0";
+    // afd->transitions[2].to = "par";
 
-    afd->transitions[0]->from = "impar";
-    afd->transitions[0]->read = "0";
-    afd->transitions[0]->to = "par";
-    
-    afd->transitions[0]->from = "impar";
-    afd->transitions[0]->read = "1";
-    afd->transitions[0]->to = "par";
+    // afd->transitions[3].from = "impar";
+    // afd->transitions[3].read = "1";
+    // afd->transitions[3].to = "par";
 
-    //estado inicial
-    afd->initial_state = "par";
+    // // //estado inicial
+    // afd->initial_state = "par";
 
-    //estado final
-    afd->qtd_final_states = 1;
-    afd->final_states = "par";
+    // //estado final
+    // afd->qtd_final_states = 1;
+    // afd->final_states[0] = "par";
 
-    AFD *afd_complemento = complementacao(afd);
+    // printf("%s", afd->states[0]);
 
-    printf("estados finais entrada:");
-    for(int i=0; i<afd->qtd_final_states; i++){
-        printf(afd->final_states[i]);
-    }
+    // AFD *afd_complemento = complementacao(afd);
 
-    printf("estados finais complemento:");
-    for(int i=0; i<afd_complemento->qtd_final_states; i++){
-        printf(afd_complemento->final_states[i]);
-    }
-    
+    // printf("estados finais entrada:");
+    // for (int i = 0; i < afd->qtd_final_states; i++)
+    // {
+    //     printf("%s", afd->final_states[i]);
+    // }
+
+    // printf("estados finais complemento:");
+    // for(int i=0; i<afd_complemento->qtd_final_states; i++){
+    //     printf(afd_complemento->final_states[i]);
+    // }
+
     return 0;
 }
