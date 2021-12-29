@@ -4,6 +4,7 @@
 #include "./domain/features/afd/afd.h"
 #include "./domain/features/operations/complement.h"
 #include "./domain/features/operations/product/product.h"
+#include "./domain/features/operations/intersection/intersection.h"
 
 int main()
 {
@@ -142,33 +143,37 @@ int main()
     AFD product;
     product = afdProduct(*afd, *afd2);
 
-    printf("\n\n\n--------estado inicial: %s", product.initial_state);
-    printf("\n\n\n--------estado final: ");
-    for (int i = 0; i < product.qtd_final_states; i++)
+    AFD intersection;
+    intersection = afdIntersection(*afd, *afd2);
+
+    printf("\n\n\n--------estado inicial: %s", intersection.initial_state);
+
+    printf("\n\n\n--------estados finais: ");
+    for (int i = 0; i < intersection.qtd_final_states; i++)
     {
-        printf("\n%s", product.final_states[i]);
+        printf("\n%s", intersection.final_states[i]);
     }
 
-    // printf("\n\n\n--------estados:");
-    // for (int i = 0; i < product.qtd_states; i++)
-    // {
-    //     printf("\n%s", product.states[i]);
-    // }
+    printf("\n\n\n--------estados:");
+    for (int i = 0; i < intersection.qtd_states; i++)
+    {
+        printf("\n%s", intersection.states[i]);
+    }
 
-    // printf("\n\n\n--------simbolos:");
-    // for (int i = 0; i < product.qtd_symbols; i++)
-    // {
-    //     printf("\n%s", product.symbols[i]);
-    // }
+    printf("\n\n\n--------simbolos:");
+    for (int i = 0; i < intersection.qtd_symbols; i++)
+    {
+        printf("\n%s", intersection.symbols[i]);
+    }
 
-    // printf("\n\n\n--------transacoes:");
-    // for (int i = 0; i < product.qtd_transitions; i++)
-    // {
-    //     printf("\nFrom: %s", product.transitions[i].from);
-    //     printf("\nRead: %s", product.transitions[i].read);
-    //     printf("\nTo: %s", product.transitions[i].to);
-    //     printf("\n\n");
-    // }
+    printf("\n\n\n--------transacoes:");
+    for (int i = 0; i < intersection.qtd_transitions; i++)
+    {
+        printf("\nFrom: %s", intersection.transitions[i].from);
+        printf("\nRead: %s", intersection.transitions[i].read);
+        printf("\nTo: %s", intersection.transitions[i].to);
+        printf("\n\n");
+    }
 
     return 0;
 }
