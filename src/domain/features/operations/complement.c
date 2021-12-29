@@ -59,6 +59,6 @@ void *complementacao(AFD *entrada, AFD *complemento)
     complemento->final_states = comp_final_states;
     printf("\nresult: %s", complemento->final_states[0]);
 
-    freeAFD(ent);
-    free(comp_final_states);
+    //freeAFD(ent);
+    //free(comp_final_states);
 }
