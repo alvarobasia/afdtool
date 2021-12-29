@@ -62,7 +62,6 @@ AFD afdProduct(AFD afd1, AFD afd2)
     for (int i = 0; i < product.qtd_states; i++)
     {
         char *state = product.states[i];
-        printf("\nEstado: %s", state);
 
         // cópia do estado a ser utilizado
         char *copy = state;
@@ -111,14 +110,10 @@ AFD afdProduct(AFD afd1, AFD afd2)
                 }
             }
 
-            printf("\nSimbolo: %s", symbol);
-
             char *stateTo = malloc((strlen(to1) + strlen(to2) + 1) * sizeof(char));
             strcpy(stateTo, to1);
             strcat(stateTo, "/");
             strcat(stateTo, to2);
-
-            printf("\nTo: %s", stateTo);
 
             Transition *transitionProduct = getEmptyTransition();
             transitionProduct->from = state;
