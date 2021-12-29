@@ -54,11 +54,10 @@ int getSymbolPosition(AFD *afd, char *symbol)
 AFD *getEmptyAFD()
 {
     AFD *afd = malloc(sizeof(AFD));
-    afd->qtd_states = malloc(sizeof(int));
-    afd->qtd_symbols = malloc(sizeof(int));
-    afd->qtd_transitions = malloc(sizeof(int));
-    afd->qtd_final_states = malloc(sizeof(int));
-    afd->initial_state = malloc(sizeof(int));
+    afd->qtd_states = (int)malloc(sizeof(int));
+    afd->qtd_symbols = (int)malloc(sizeof(int));
+    afd->qtd_transitions = (int)malloc(sizeof(int));
+    afd->qtd_final_states = (int)malloc(sizeof(int));
     return afd;
 }
 
