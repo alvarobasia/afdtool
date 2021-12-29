@@ -139,7 +139,14 @@ int main()
     afd2->final_states[0] = "C";
     // printf("\n--------estados finais:\n%s", afd->final_states[0]);
 
-    afdProduct(afd, afd2);
+    AFD product;
+    product = afdProduct(*afd, *afd2);
+
+    printf("\n\n\n--------estados:");
+    for (int i = 0; i < product.qtd_states; i++)
+    {
+        printf("\n%s", product.states[i]);
+    }
 
     return 0;
 }
