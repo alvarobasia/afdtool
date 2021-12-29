@@ -5,6 +5,6 @@
 #include <string.h>
 #include <stdio.h>
 
-void *complementacao(AFD *entrada, AFD *complemento);
+void *complementacao(AFD *entrada);
 
 #endif

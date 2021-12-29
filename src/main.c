@@ -77,12 +77,11 @@ int main(int argc, char *argv[])
 
     printf("\n\n------------------------COMPLEMENTO------------------------------");
     AFD *afd_complemento = getEmptyAFD();
-    complementacao(afd, afd_complemento);
+    afd_complemento = complementacao(afd);
 
     printf("\n------------Estados finais:");
     for(int i=0; i<afd_complemento->qtd_final_states; i++){
-        printf("entrou");
-        printf("\n%s",afd_complemento->final_states[0]);
+        printf("estados finais FORA:%s",afd_complemento->final_states[i]);
     }
 
     freeAFD(afd);
