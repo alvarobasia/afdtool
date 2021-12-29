@@ -76,15 +76,18 @@ int main(int argc, char *argv[])
     printf("\n--------estados finais:\n%s", afd->final_states[0]);
 
     printf("\n\n------------------------COMPLEMENTO------------------------------");
-    AFD *afd_complemento = getEmptyAFD();
-    afd_complemento = complementacao(afd);
+    AFD afd_complemento;
+    afd_complemento = complementacao(*afd);
 
     printf("\n------------Estados finais:");
-    for(int i=0; i<afd_complemento->qtd_final_states; i++){
-        printf("estados finais FORA:%s",afd_complemento->final_states[i]);
+    for(int i=0; i<afd_complemento.qtd_final_states; i++){
+        printf("\nestados finais do complemento:%s",afd_complemento.final_states[i]);
     }
+    for(int i=0; i<afd->qtd_final_states; i++){
+        printf("\nestados finais da entrada:%s",afd->final_states[i]);
+    }
+    
 
     freeAFD(afd);
-    freeAFD(afd_complemento);
     return 0;
 }
