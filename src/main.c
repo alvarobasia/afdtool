@@ -142,11 +142,11 @@ int main()
     AFD product;
     product = afdProduct(*afd, *afd2);
 
-    printf("\n\n\n--------estados:");
-    for (int i = 0; i < product.qtd_states; i++)
-    {
-        printf("\n%s", product.states[i]);
-    }
+    // printf("\n\n\n--------estados:");
+    // for (int i = 0; i < product.qtd_states; i++)
+    // {
+    //     printf("\n%s", product.states[i]);
+    // }
 
     return 0;
 }
