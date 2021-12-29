@@ -17,12 +17,10 @@ void *complementacao(AFD *entrada, AFD *complemento)
 
     //limpando os estados finais
     // comp->final_states = NULL;
-    int comp_qtd_final_states = ent->qtd_states-ent->qtd_final_states;
-    char **comp_final_states = malloc(sizeof(char) * comp_qtd_final_states);
+    int qtd = ent->qtd_states - ent->qtd_final_states;
+    char **comp_final_states = malloc(sizeof(char) * qtd);
     int cont = 0, position = 0, size;
     char *state, *newState;
-             
-    
 
     // verificando quais estados não são finais no AFD de entrada e adicionando-os como
     // estados finais no AFD de complemento
@@ -49,8 +47,7 @@ void *complementacao(AFD *entrada, AFD *complemento)
             newState = malloc((size + 1) * sizeof(char));
             strcpy(newState, state);
             printf("\nnewState: %s", newState);
-            strcpy(comp_final_states[position],newState);
-            //comp_final_states[position] = newState;
+            comp_final_states[position] = newState;
             printf("\nestado final dentro: %s", comp_final_states[position]);
             position++;
             
@@ -60,6 +57,7 @@ void *complementacao(AFD *entrada, AFD *complemento)
 
     complemento = ent;
     complemento->final_states = comp_final_states;
+    printf("\nresult: %s", complemento->final_states[0]);
 
     freeAFD(ent);
     free(comp_final_states);

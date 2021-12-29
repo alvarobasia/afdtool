@@ -79,14 +79,13 @@ int main(int argc, char *argv[])
     AFD *afd_complemento = getEmptyAFD();
     complementacao(afd, afd_complemento);
 
-    freeAFD(afd);
-
     printf("\n------------Estados finais:");
     for(int i=0; i<afd_complemento->qtd_final_states; i++){
+        printf("\n*estado inicial:\n%s", afd_complemento->initial_state);
         printf("\n%s",afd_complemento->final_states[i]);
     }
 
-    
+    freeAFD(afd);
     freeAFD(afd_complemento);
     return 0;
 }
