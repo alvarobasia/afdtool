@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "../afd/afd.h"
 
-AFD complementacao(AFD entrada);
+AFD complementacao(AFD entry);
 
 #endif
