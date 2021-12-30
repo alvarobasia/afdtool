@@ -12,11 +12,12 @@ AFD afdUnion(AFD afd1, AFD afd2)
     //Quantidade de estados finais
     int qtdStates = (afd1.qtd_final_states) * (afd2.qtd_final_states);
     unionAFD.qtd_final_states = qtdStates;
+    char **finalStates = malloc(sizeof(char *) * qtdStates);
 
     // Alocar memória para os estados finais
     unionAFD.final_states = malloc(sizeof(char *) * qtdStates);
 
-    int indexFinalState = 0;
+    int indexFinalState = 1;
     for (int i = 0; i < afd1.qtd_states; i++)
     {
         // estado da AFD 1
@@ -41,9 +42,9 @@ AFD afdUnion(AFD afd1, AFD afd2)
                 {
                     if ((strcmp(state1, afd1.final_states[k]) == 0) || (strcmp(state2, afd2.final_states[l]) == 0))
                     {
+                        unionAFD.final_states[indexFinalState - 1] = stateProduct;
+                        unionAFD.final_states = realloc(unionAFD.final_states, ((indexFinalState + 1) * sizeof(char)));
                         printf("Entrou");
-                        unionAFD.final_states[indexFinalState] = stateProduct;
-                        puts(unionAFD.final_states[indexFinalState]);
                         printf("%d", indexFinalState);
                         indexFinalState++;
                     }
@@ -51,6 +52,7 @@ AFD afdUnion(AFD afd1, AFD afd2)
             }
         }
     }
+    unionAFD.qtd_final_states = indexFinalState - 1;
 
     return unionAFD;
 }
