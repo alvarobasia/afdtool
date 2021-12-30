@@ -17,19 +17,20 @@ int main(int argc, char *argv[])
     AFD *afd = getEmptyAFD();
 
     // //estados
-    afd->qtd_states = 2;
+    afd->qtd_states = 3;
     printf("--------qtd estados:\n%d", afd->qtd_states);
 
-    afd->states = malloc(sizeof(char) * afd->qtd_states);
+    afd->states = (char**)malloc(sizeof(char) * afd->qtd_states);
     afd->states[0] = "par";
     afd->states[1] = "impar";
+    afd->states[2] = "impar2";
     printf("\n--------estados:\n%s\n%s", afd->states[0], afd->states[1]);
     
     //alfabeto
     afd->qtd_symbols = 2;
     printf("\n--------qtd do alfabeto:\n%d", afd->qtd_symbols);
 
-    afd->symbols = malloc(sizeof(char) * afd->qtd_symbols);
+    afd->symbols = (char**)malloc(sizeof(char) * afd->qtd_symbols);
     afd->symbols[0] = "0";
     afd->symbols[1] = "1";
     printf("\n--------alfabeto:\n%s\n%s", afd->symbols[0], afd->symbols[1]);
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     printf("\n--------qtd de transicoes:\n%d", afd->qtd_transitions);
 
     afd->transitions = malloc(sizeof(Transition) * afd->qtd_transitions);
+    
     afd->transitions[0].from = "par";
     afd->transitions[0].read = "0";
     afd->transitions[0].to = "impar";
@@ -68,11 +70,12 @@ int main(int argc, char *argv[])
     printf("\n--------estado inicial:\n%s", afd->initial_state);
 
     //estado final
-    afd->qtd_final_states = 1;
+    afd->qtd_final_states = 2;
     printf("\n--------qtd de estados finais:\n%d", afd->qtd_final_states);
 
     afd->final_states = malloc(sizeof(char) * afd->qtd_final_states);
     afd->final_states[0] = "par";
+    afd->final_states[1] = "impar";
     printf("\n--------estados finais:\n%s", afd->final_states[0]);
 
     printf("\n\n------------------------COMPLEMENTO------------------------------");
@@ -87,7 +90,6 @@ int main(int argc, char *argv[])
         printf("\nestados finais da entrada:%s",afd->final_states[i]);
     }
     
-
     freeAFD(afd);
     return 0;
 }

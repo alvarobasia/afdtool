@@ -22,9 +22,9 @@ Transition *getTransition(AFD afd, char *from, char *to, char *read)
 Transition *getEmptyTransition()
 {
     Transition *transition = malloc(sizeof(Transition));
-    transition->from = malloc(sizeof(int));
-    transition->read = malloc(sizeof(int));
-    transition->to = malloc(sizeof(int));
+    transition->from = malloc(sizeof(char));
+    transition->read = malloc(sizeof(char));
+    transition->to = malloc(sizeof(char));
 }
 
 int getStatePosition(AFD *afd, char *state)
