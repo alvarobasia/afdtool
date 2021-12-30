@@ -141,43 +141,43 @@ int main()
     afd2->final_states[0] = "C";
     // printf("\n--------estados finais:\n%s", afd->final_states[0]);
 
-    AFD product;
-    product = afdProduct(*afd, *afd2);
+    // AFD product;
+    // product = afdProduct(*afd, *afd2);
 
-    AFD unionAFD;
-    unionAFD = afdUnion(*afd, *afd2);
+    // AFD unionAFD;
+    // unionAFD = afdUnion(*afd, *afd2);
 
-    printf("\n\n\n--------estado inicial: %s", unionAFD.initial_state);
+    // printf("\n\n\n--------estado inicial: %s", unionAFD.initial_state);
 
-    printf("\n\n\n--------estados finais: %d", unionAFD.qtd_final_states);
-    for (int i = 0; i < unionAFD.qtd_final_states; i++)
-    {
-        printf("\n%s", unionAFD.final_states[i]);
-    }
+    // printf("\n\n\n--------estados finais: %d", unionAFD.qtd_final_states);
+    // for (int i = 0; i < unionAFD.qtd_final_states; i++)
+    // {
+    //     printf("\n%s", unionAFD.final_states[i]);
+    // }
 
-    printf("\n\n\n--------estados:");
-    for (int i = 0; i < unionAFD.qtd_states; i++)
-    {
-        printf("\n%s", unionAFD.states[i]);
-    }
+    // printf("\n\n\n--------estados:");
+    // for (int i = 0; i < unionAFD.qtd_states; i++)
+    // {
+    //     printf("\n%s", unionAFD.states[i]);
+    // }
 
-    printf("\n\n\n--------simbolos:");
-    for (int i = 0; i < unionAFD.qtd_symbols; i++)
-    {
-        printf("\n%s", unionAFD.symbols[i]);
-    }
+    // printf("\n\n\n--------simbolos:");
+    // for (int i = 0; i < unionAFD.qtd_symbols; i++)
+    // {
+    //     printf("\n%s", unionAFD.symbols[i]);
+    // }
 
-    printf("\n\n\n--------transacoes:");
-    for (int i = 0; i < unionAFD.qtd_transitions; i++)
-    {
-        printf("\nFrom: %s", unionAFD.transitions[i].from);
-        printf("\nRead: %s", unionAFD.transitions[i].read);
-        printf("\nTo: %s", unionAFD.transitions[i].to);
-        printf("\n\n");
-    }
+    // printf("\n\n\n--------transacoes:");
+    // for (int i = 0; i < unionAFD.qtd_transitions; i++)
+    // {
+    //     printf("\nFrom: %s", unionAFD.transitions[i].from);
+    //     printf("\nRead: %s", unionAFD.transitions[i].read);
+    //     printf("\nTo: %s", unionAFD.transitions[i].to);
+    //     printf("\n\n");
+    // }
 
-    // AFD intersection;
-    // intersection = afdIntersection(*afd, *afd2);
+    AFD intersection;
+    intersection = afdIntersection(*afd, *afd2);
 
     // printf("\n\n\n--------estado inicial: %s", intersection.initial_state);
 
@@ -207,6 +207,38 @@ int main()
     //     printf("\nTo: %s", intersection.transitions[i].to);
     //     printf("\n\n");
     // }
+
+    AFD complement;
+    complement = complementacao(intersection);
+
+    printf("\n\n\n--------estado inicial: %s", complement.initial_state);
+
+    printf("\n\n\n--------estados finais: ");
+    for (int i = 0; i < complement.qtd_final_states; i++)
+    {
+        printf("\n%s", complement.final_states[i]);
+    }
+
+    printf("\n\n\n--------estados:");
+    for (int i = 0; i < complement.qtd_states; i++)
+    {
+        printf("\n%s", complement.states[i]);
+    }
+
+    printf("\n\n\n--------simbolos:");
+    for (int i = 0; i < complement.qtd_symbols; i++)
+    {
+        printf("\n%s", complement.symbols[i]);
+    }
+
+    printf("\n\n\n--------transacoes:");
+    for (int i = 0; i < complement.qtd_transitions; i++)
+    {
+        printf("\nFrom: %s", complement.transitions[i].from);
+        printf("\nRead: %s", complement.transitions[i].read);
+        printf("\nTo: %s", complement.transitions[i].to);
+        printf("\n\n");
+    }
 
     return 0;
 }
