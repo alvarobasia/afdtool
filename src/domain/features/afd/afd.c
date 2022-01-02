@@ -19,13 +19,13 @@ Transition *getTransition(AFD afd, char *from, char *to, char *read)
     //     return transition;
     // }
 
-    // Transition *getEmptyTransition()
-    // {
-    //     Transition *transition = malloc(sizeof(Transition));
-    //     transition->from = malloc(sizeof(int));
-    //     transition->read = malloc(sizeof(int));
-    //     transition->to = malloc(sizeof(int));
-    // }
+    Transition *getEmptyTransition()
+    {
+        Transition *transition = malloc(sizeof(Transition));
+        transition->from = malloc(sizeof(char));
+        transition->read = malloc(sizeof(char));
+        transition->to = malloc(sizeof(char));
+    }
 
     int getStatePosition(AFD * afd, char *state)
     {
@@ -50,43 +50,55 @@ Transition *getTransition(AFD afd, char *from, char *to, char *read)
         }
         return -1;
     }
+    return -1;
+}
 
-    AFD *getEmptyAFD()
+AFD *getEmptyAFD()
+{
+    AFD *afd = malloc(sizeof(AFD));
+    afd->qtd_states = (int)malloc(sizeof(int));
+    afd->qtd_symbols = (int)malloc(sizeof(int));
+    afd->qtd_transitions = (int)malloc(sizeof(int));
+    afd->qtd_final_states = (int)malloc(sizeof(int));
+    return afd;
+}
+
+AFD *getEmptyAFD()
+{
+    AFD *afd = malloc(sizeof(AFD));
+    afd->qtd_states = malloc(sizeof(int));
+    afd->qtd_symbols = malloc(sizeof(int));
+    afd->qtd_transitions = malloc(sizeof(int));
+    afd->qtd_final_states = malloc(sizeof(int));
+    afd->initial_state = malloc(sizeof(int));
+    return afd;
+}
+
+// void freeTransition(Transition *transition)
+// {
+//     free(transition->from);
+//     free(transition->to);
+//     free(transition->read);
+// }
+
+void freeAFD(AFD *afd)
+{
+    for (int i = 0; i < afd->qtd_states; i++)
     {
-        AFD *afd = malloc(sizeof(AFD));
-        afd->qtd_states = malloc(sizeof(int));
-        afd->qtd_symbols = malloc(sizeof(int));
-        afd->qtd_transitions = malloc(sizeof(int));
-        afd->qtd_final_states = malloc(sizeof(int));
-        afd->initial_state = malloc(sizeof(int));
-        return afd;
+        free(afd->states[i]);
+    }
+    for (int i = 0; i < afd->qtd_symbols; i++)
+    {
+        free(afd->symbols[i]);
+    }
+    for (int i = 0; i < afd->qtd_transitions; i++)
+    {
+        freeTransition(&afd->transitions[i]);
     }
 
-    // void freeTransition(Transition *transition)
-    // {
-    //     free(transition->from);
-    //     free(transition->to);
-    //     free(transition->read);
-    // }
-
-    void freeAFD(AFD * afd)
-    {
-        for (int i = 0; i < afd->qtd_states; i++)
-        {
-            free(afd->states[i]);
-        }
-        for (int i = 0; i < afd->qtd_symbols; i++)
-        {
-            free(afd->symbols[i]);
-        }
-        for (int i = 0; i < afd->qtd_transitions; i++)
-        {
-            freeTransition(&afd->transitions[i]);
-        }
-
-        free(afd->transitions);
-        free(afd->symbols);
-        free(afd->states);
-        free(afd->final_states);
-        free(afd->initial_state);
-    }
+    free(afd->transitions);
+    free(afd->symbols);
+    free(afd->states);
+    free(afd->final_states);
+    free(afd->initial_state);
+}
