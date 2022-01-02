@@ -1,3 +1,10 @@
+#ifndef __AFD_H__
+#define __AFD_H__
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
 /** 
 Estrutura para representação de uma transicao. Ela utiliza os indices dos elementos no array do AFD.
 -> from: estado em que se encontra o AFD no momento da transicao
@@ -6,9 +13,9 @@ Estrutura para representação de uma transicao. Ela utiliza os indices dos elem
 **/
 typedef struct transition_est
 {
-  int *from;
-  int *read;
-  int *to;
+  char *from;
+  char *read;
+  char *to;
 } Transition;
 
 /**
@@ -26,15 +33,15 @@ typedef struct _AFD
   int qtd_states;
 
   char **symbols;
-  int *qtd_symbols;
+  int qtd_symbols;
 
-  int *initial_state;
+  char *initial_state;
 
-  char *final_states;
-  int *qtd_final_states;
+  char **final_states;
+  int qtd_final_states;
 
-  Transition **transitions;
-  int *qtd_transitions;
+  Transition *transitions;
+  int qtd_transitions;
 
 } AFD;
 
@@ -49,23 +56,24 @@ typedef struct _AFD
 //  **/
 // Transition *getEmptyTransition();
 
-// /**
-//   Metodo que busca e retorna a posicao de um estado dentro da AFD,
-//   é necessario saber a AFD utilizada e o estado a ser encontrado.
-//   Se o estado não for encontrado, o valor -1 é retornado.
-//   **/
-// int getStatePosition(AFD afd, char *state);
+/**
+  Metodo que busca e retorna a posicao de um estado dentro da AFD,
+  é necessario saber a AFD utilizada e o estado a ser encontrado.
+  Se o estado não for encontrado, o valor -1 é retornado. 
+  **/
+int getStatePosition(AFD *afd, char *state);
 
-// /**
-//   Metodo que busca e retorna a posicao de um simbolo dentro da AFD,
-//   é necessario saber a AFD utilizada e o simbolo a ser encontrado.
-//   Se o simbolo não for encontrado, o valor -1 é retornado.
-//   **/
-// int getSymbolPosition(AFD afd, char *symbol);
+/**
+  Metodo que busca e retorna a posicao de um simbolo dentro da AFD,
+  é necessario saber a AFD utilizada e o simbolo a ser encontrado.
+  Se o simbolo não for encontrado, o valor -1 é retornado. 
+  **/
+int getSymbolPosition(AFD *afd, char *symbol);
 
 /**
   Método que retorna uma AFD vazia.
    **/
+
 AFD *getEmptyAFD();
 
 // /**
@@ -79,7 +87,9 @@ AFD *getEmptyAFD();
 //    **/
 // void writeAFD(AFD afd, char *fileName);
 
-// /**
-//   Método que libera memoria alocada por uma AFD.
-//    **/
-// void freeAFD(AFD *afd);
+/**
+  Método que libera memoria alocada por uma AFD.
+   **/
+void freeAFD(AFD *afd);
+
+#endif
