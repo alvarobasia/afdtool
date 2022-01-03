@@ -12,9 +12,14 @@ void getCorrectOperation(CLI *cli, int argc, char *argv[])
 {
     switch (cli->operation)
     {
+    case UNION:
+        unionEntryPoint(cli, readFile(cli, argv[2]), readFile(cli, argv[3]), argc, argv);
+        break;
+    case INTERSSECTION:
     case VISUALIZATION:
         visualizationEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
         break;
+    case COMPLEMENT:
     default:
         printf("Invalid operation");
         exit(EXIT_FAILURE);
