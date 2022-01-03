@@ -16,11 +16,14 @@ void getCorrectOperation(CLI *cli, int argc, char *argv[])
         unionEntryPoint(cli, readFile(cli, argv[2]), readFile(cli, argv[3]), argc, argv);
         break;
     case INTERSSECTION:
+        intersectionEntryPoint(cli, readFile(cli, argv[2]), readFile(cli, argv[3]), argc, argv);
+        break;
     case VISUALIZATION:
         visualizationEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
         break;
     case COMPLEMENT:
         complementEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
+        break;
     default:
         printf("Invalid operation");
         exit(EXIT_FAILURE);

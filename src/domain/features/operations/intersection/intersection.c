@@ -4,7 +4,54 @@
 #include "./intersection.h"
 #include "../product/product.h"
 
-AFD afdIntersection(AFD afd1, AFD afd2)
+void intersectionEntryPoint(CLI *cli, AFD *afd1, AFD *afd2, int argc, char *argv[])
+{
+    CLIErrors *error = NULL;
+
+    if (argc != 6)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = INVALID_ARGUMENTS_NUMBER;
+        cli->error = error;
+        cli->hasAnError = 1;
+        return;
+    }
+    if (argv[2] == NULL || argv[3] == NULL || argv[5] == NULL)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = NOT_PROVIDER_A_FILE;
+    }
+
+    if (strcmp("--output", argv[4]) != 0)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = NOT_PROVIDER_A_OUTPUT_FILE_FLAG;
+    }
+
+    if (error != NULL)
+    {
+        cli->error = error;
+        cli->hasAnError = 1;
+        return;
+    }
+
+    cli->secondFile = argv[5];
+
+    FILE *file = fopen(cli->secondFile, "a");
+
+    if (file == NULL)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = NOT_PROVIDER_A_FILE;
+        cli->error = error;
+        cli->hasAnError = 1;
+        return;
+    }
+
+    afdIntersection(*afd1, *afd2, file);
+}
+
+void afdIntersection(AFD afd1, AFD afd2, FILE *file)
 {
     // Criando a AFD de interseção a partir do produto entre duas AFDs
     AFD intersection = afdProduct(afd1, afd2);
@@ -49,5 +96,6 @@ AFD afdIntersection(AFD afd1, AFD afd2)
         }
     }
 
-    return intersection;
+    // return intersection;
+    writeFile(&intersection, file);
 }
