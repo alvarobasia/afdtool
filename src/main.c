@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "./domain/features/cli/cli.h"
 #include "./domain/features/afd/afd.h"
-#include "./domain/features/operations/complement.h"
+#include "./domain/features/operations/complement/complement.h"
 #include "./domain/features/operations/product/product.h"
 #include "./domain/features/operations/intersection/intersection.h"
 #include "./domain/features/operations/union/union.h"
