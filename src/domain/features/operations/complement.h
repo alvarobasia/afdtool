@@ -1,11 +1,7 @@
 #ifndef __COMPLEMENT_H__
 #define __COMPLEMENT_H__
+#endif
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "../afd/afd.h"
 
 AFD complementacao(AFD entry);
-
-#endif

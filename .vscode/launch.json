@@ -10,12 +10,12 @@
         ""
       ],
       "stopAtEntry": false,
-      "cwd": "c:/Users/Samsung/Documents/GitHub/afdtool/src",
+      "cwd": "c:/Users/helen/afdtool/src",
       "environment": [],
-      "program": "c:/Users/Samsung/Documents/GitHub/afdtool/src/build/Debug/outDebug",
+      "program": "c:/Users/helen/afdtool/src/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
-      "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
+      "miDebuggerPath": "C:/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/gdb.exe",
       "externalConsole": false,
       "setupCommands": [
         {
