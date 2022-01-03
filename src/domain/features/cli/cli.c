@@ -94,7 +94,6 @@ char **splitBySpace(char *line)
 AFD *readFile(CLI *cli, char *fileName)
 {
 
-    char *fileName = malloc(sizeof(char) * 1000);
     strcpy(fileName, cli->inputFile);
 
     FILE *file = fopen(fileName, "r");
