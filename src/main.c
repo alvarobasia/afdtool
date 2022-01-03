@@ -18,11 +18,17 @@ void getCorrectOperation(CLI *cli, int argc, char *argv[])
     case INTERSSECTION:
         intersectionEntryPoint(cli, readFile(cli, argv[2]), readFile(cli, argv[3]), argc, argv);
         break;
+    case MINIMIZATION:
+        printf("Operation not implemented");
+        break;
     case VISUALIZATION:
         visualizationEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
         break;
     case COMPLEMENT:
         complementEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
+        break;
+    case RECOGNIZE:
+        printf("Operation not implemented");
         break;
     default:
         printf("Invalid operation");
