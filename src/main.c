@@ -20,6 +20,7 @@ void getCorrectOperation(CLI *cli, int argc, char *argv[])
         visualizationEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
         break;
     case COMPLEMENT:
+        complementEntryPoint(cli, readFile(cli, cli->inputFile), argc, argv);
     default:
         printf("Invalid operation");
         exit(EXIT_FAILURE);
