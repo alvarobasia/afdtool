@@ -3,7 +3,7 @@
 #include <string.h>
 #include "complement.h"
 
-AFD complementacao(AFD entry)
+void complementacao(AFD entry, FILE *file)
 {
     // Criando a AFD
     AFD complement;
@@ -80,6 +80,54 @@ AFD complementacao(AFD entry)
         transitionProduct->to = entry.transitions[i].to;
         complement.transitions[i] = *transitionProduct;
     }
+    
+    writeAFD(entry, file);
+}
 
-    return complement;
+void complementEntryPoint(CLI *cli, AFD *afd, int argc, char *argv[])
+{
+
+    CLIErrors *error = NULL;
+
+    if (argc != 5)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = INVALID_ARGUMENTS_NUMBER;
+        cli->error = error;
+        cli->hasAnError = 1;
+        return;
+    }
+    if (argv[2] == NULL || argv[4] == NULL)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = NOT_PROVIDER_A_FILE;
+    }
+
+    if (strcmp("--output", argv[3]) != 0)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = NOT_PROVIDER_A_OUTPUT_FILE_FLAG;
+    }
+
+    if (error != NULL)
+    {
+        cli->error = error;
+        cli->hasAnError = 1;
+        return;
+    }
+
+    cli->secondFile = argv[4];
+
+    FILE *file = fopen(cli->secondFile, "a");
+
+    if (file == NULL)
+    {
+        error = malloc(sizeof(CLIErrors));
+        error->message = NOT_PROVIDER_A_FILE;
+        cli->error = error;
+        cli->hasAnError = 1;
+        return;
+    }
+
+    complementacao(*afd, file);
 }
