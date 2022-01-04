@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include "./domain/features/cli/cli.h"
 #include "./domain/features/afd/afd.h"
-#include "./domain/features/operations/complement/complement.h"
+
 #include "./domain/features/operations/product/product.h"
 #include "./domain/features/operations/intersection/intersection.h"
 #include "./domain/features/operations/union/union.h"
 #include "./domain/features/operations/visualization/visualization.h"
-
+#include "./domain/features/operations/complement/complement.h"
 void getCorrectOperation(CLI *cli, int argc, char *argv[])
 {
+
     switch (cli->operation)
     {
     case UNION:

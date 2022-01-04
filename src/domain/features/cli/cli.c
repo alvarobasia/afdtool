@@ -56,11 +56,11 @@ Operations getOperationByText(char *comand)
 {
 
     char operationsText[][1000] = {
-        "--union",
-        "--intersection",
+        "--uniao",
+        "--intersecao",
         "--minimization",
         "--dot",
-        "--complement",
+        "--complemento",
         "--recognize"};
 
     Operations operations[] = {
@@ -94,7 +94,7 @@ char **splitBySpace(char *line)
 AFD *readFile(CLI *cli, char *fileName)
 {
 
-    strcpy(fileName, cli->inputFile);
+    strcpy(fileName, fileName);
 
     FILE *file = fopen(fileName, "r");
     if (file == NULL)
@@ -210,10 +210,8 @@ AFD *readFile(CLI *cli, char *fileName)
     return afd;
 }
 
-void *writeFile(AFD *afd, char *fileName)
+void *writeFile(AFD *afd, FILE *file)
 {
-
-    FILE *file = fopen(fileName, "a");
 
     fprintf(file, "%d\n", afd->qtd_states);
     for (int i = 0; i < afd->qtd_states; i++)

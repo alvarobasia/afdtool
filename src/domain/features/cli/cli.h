@@ -54,6 +54,6 @@ CLIErrors *isValidImputs(int argc, char *argv[]);
 
 AFD *readFile(CLI *cli, char *fileName);
 
-void *writeFile(AFD *afd, char *fileName);
+void *writeFile(AFD *afd, FILE *file);
 
 #endif

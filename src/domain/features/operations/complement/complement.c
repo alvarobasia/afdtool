@@ -32,7 +32,7 @@ void complementacao(AFD entry, FILE *file)
         int size = strlen(aux);
         char *newState = malloc((size + 1) * sizeof(char));
         strcpy(newState, aux);
-        complement.states[i] = newState;
+        strcpy(complement.states[i], newState);
     }
 
     // Atribuindo valor aos simbolos
@@ -80,8 +80,8 @@ void complementacao(AFD entry, FILE *file)
         transitionProduct->to = entry.transitions[i].to;
         complement.transitions[i] = *transitionProduct;
     }
-    
-    writeAFD(entry, file);
+
+    writeFile(&complement, file);
 }
 
 void complementEntryPoint(CLI *cli, AFD *afd, int argc, char *argv[])

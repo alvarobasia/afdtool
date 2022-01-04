@@ -78,7 +78,7 @@ void afdIntersection(AFD afd1, AFD afd2, FILE *file)
             int size = strlen(state1);
             char *stateProduct = malloc((size + 1) * sizeof(char));
             strcpy(stateProduct, state1);
-            strcat(stateProduct, "/");
+            strcat(stateProduct, "and");
             strcat(stateProduct, state2);
 
             // indicar o estado final da AFD de produto, no caso, os dois estados devem ser finais em suas AFDs de origem

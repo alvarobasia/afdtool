@@ -5,6 +5,7 @@
 
 AFD afdProduct(AFD afd1, AFD afd2)
 {
+
     // criar AFD vazia
     AFD product;
     // quantidade de estados (m * n)
@@ -42,7 +43,7 @@ AFD afdProduct(AFD afd1, AFD afd2)
             int size = strlen(state1);
             char *stateProduct = malloc((size + 1) * sizeof(char));
             strcpy(stateProduct, state1);
-            strcat(stateProduct, "/");
+            strcat(stateProduct, "and");
             strcat(stateProduct, state2);
             product.states[index] = stateProduct;
             // indicar o estado inicial da AFD de produto, no caso, os dois estados devem ser iniciais em suas AFDs de origem
@@ -74,28 +75,30 @@ AFD afdProduct(AFD afd1, AFD afd2)
         */
         char *aux;
         char **split = malloc(2 * sizeof(char *));
-        aux = strtok(newState, "/");
+        aux = strtok(newState, "and");
         int x = 0;
         while (aux != NULL)
         {
             split[x] = aux;
-            aux = strtok(NULL, "/");
+            aux = strtok(NULL, "and");
             x++;
         }
 
         for (int j = 0; j < product.qtd_symbols; j++)
         {
-            char *symbol = product.symbols[j];
+            char *symbol = strtok(product.symbols[j], "\n");
             char *to1;
             char *to2;
+
             // transição para o estado 1
             for (int k = 0; k < afd1.qtd_transitions; k++)
             {
+
                 if (strcmp(split[0], afd1.transitions[k].from) == 0)
                 {
                     if (strcmp(symbol, afd1.transitions[k].read) == 0)
                     {
-                        to1 = afd1.transitions[k].to;
+                        to1 = strtok(afd1.transitions[k].to, "\n");
                     }
                 }
             }
@@ -105,20 +108,22 @@ AFD afdProduct(AFD afd1, AFD afd2)
                 {
                     if (strcmp(symbol, afd2.transitions[k].read) == 0)
                     {
-                        to2 = afd2.transitions[k].to;
+                        to2 = strtok(afd2.transitions[k].to, "\n");
                     }
                 }
             }
 
-            char *stateTo = malloc((strlen(to1) + strlen(to2) + 1) * sizeof(char));
+            char *stateTo = malloc((strlen(to1) + 1 + strlen(to2)) * sizeof(char));
             strcpy(stateTo, to1);
-            strcat(stateTo, "/");
+            strcat(stateTo, "and");
             strcat(stateTo, to2);
 
             Transition *transitionProduct = getEmptyTransition();
-            transitionProduct->from = state;
-            transitionProduct->read = symbol;
-            transitionProduct->to = stateTo;
+
+            strcpy(transitionProduct->from, state);
+            strcpy(transitionProduct->read, symbol);
+            strcpy(transitionProduct->to, stateTo);
+
             product.transitions[index] = *transitionProduct;
             index++;
         }

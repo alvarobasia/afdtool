@@ -2,7 +2,7 @@
 #include "../../../features/afd/afd.h"
 #include "../../cli/cli.h"
 #include "../../utils/messages.h"
-
+#include "../../afd/afd.h"
 /**
  Método utilizado para gerar uma interseção entre AFDs.
 Ela recebe duas AFDs que irão realizar a operação de produto 

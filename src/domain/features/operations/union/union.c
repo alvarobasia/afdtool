@@ -53,6 +53,7 @@ void unionEntryPoint(CLI *cli, AFD *afd1, AFD *afd2, int argc, char *argv[])
 
 void afdUnion(AFD afd1, AFD afd2, FILE *file)
 {
+
     // Criando a AFD de interseção a partir do produto entre duas AFDs
     AFD unionAFD = afdProduct(afd1, afd2);
 
@@ -75,7 +76,7 @@ void afdUnion(AFD afd1, AFD afd2, FILE *file)
             int size = strlen(state1);
             char *stateProduct = malloc((size + 1) * sizeof(char));
             strcpy(stateProduct, state1);
-            strcat(stateProduct, "/");
+            strcat(stateProduct, "and");
             strcat(stateProduct, state2);
 
             // indicar o estado final da AFD de produto, no caso, os dois estados devem ser finais em suas AFDs de origem
@@ -105,6 +106,5 @@ void afdUnion(AFD afd1, AFD afd2, FILE *file)
         unionAFD.final_states[i] = finalStates[i];
     }
 
-    // return unionAFD;
     writeFile(&unionAFD, file);
 }
